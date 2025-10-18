@@ -2,6 +2,7 @@ import CoinCard from "../components/CoinCard";
 import LimitSelector from "../components/LimitSelector";
 import FilterInput from "../components/FilterInput";
 import SortSelector from "../components/SortSelector";
+import Spinner from "../components/Spinner";
 
 const HomePage = ({
   coins,
@@ -27,7 +28,7 @@ const HomePage = ({
         case "market_cap_desc":
           return b.market_cap - a.market_cap;
         case "market_cap_asc":
-          return (a.market_cap = b.market_cap);
+          return a.market_cap - b.market_cap;
         case "price_desc":
           return b.current_price - a.current_price;
         case "price_asc":
@@ -41,7 +42,7 @@ const HomePage = ({
   return (
     <div>
       <h1>🚀 Crypto Dash</h1>
-      {loading && <p>Loading...</p>}
+      {loading && <Spinner color="white" />}
       {error && <div className="error">{error}</div>}
       <div className="top-controls">
         <FilterInput filter={filter} onFilterChange={setFilter} />
